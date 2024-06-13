@@ -1,110 +1,45 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
-    <title>Sistema de Reservaciones</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript">addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-        function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- FirebaseUI para autenticación -->
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Custom CSS -->
-    <link href="css/styles.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Font Awesome -->
-    <link href="css/font-awesome.css" rel="stylesheet"> 
-    <style>
-		
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/auth.js"></script>
 </head>
 <body>
-	<div class="header_agileinfo">
-	  <div class="w3_agileits_header_text">
-	    <ul class="top_agile_w3l_info_icons">
-	      <li><i class="fa fa-home" aria-hidden="true"><font color="#333333" face="Lato, sans-serif">'</font></i>WTC Ciudad de México</li>
-	      <li class="second"><i class="fa fa-phone" aria-hidden="true"></i>(+52) 5621204896</li>
-	      <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="drstuarthgonz@gmail.com">drstuarthgonz@gmail.com</a></li>
-        </ul>
-      </div>
-	  <div class="agileinfo_social_icons">
-	    <ul class="agileits_social_list">
-	      <li><a href="https://www.facebook.com/" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-	      <li><a href="https://twitter.com/" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-	      <li><a href="https://www.linkedin.com/" class="w3_agile_linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-        </ul>
-      </div>
-	  <div class="clearfix"> </div>
-</div>
-<div class="header-bottom">
-	<nav class="navbar navbar-default">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				  </button>
-  </nav>
-</div>
-</div>
-<body>
-    <h1>Bienvenido al Sistema de Gestión de Citas Médicas</h1>
-    <p><a href="login.html">Iniciar Sesión</a> para gestionar sus citas.</p>
-</body>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
-	<div class="footer">
-		<div class="container">
-			<h4>Nuestro <span>Newsletter</span></h4>
-			<form action="#" method="post">
-				<input type="email" name="Email" placeholder="Ingresa Tú Email..." required="">
-			  <input type="submit" value="Send">
-		  </form>
-			<div class="agile_footer_copy">
-				<div class="w3agile_footer_grids">
-					<div class="col-md-4 w3agile_footer_grid">
-						<h3>Nosotros</h3>
-						<p>Dr. Stuarth Kenneth Gonzalez<span>Ginecologo y Obstetra</span></p>
-				  </div>
-				  <div class="col-md-4 w3agile_footer_grid">
-					<h3>Contact Info</h3>
-					  <ul>
-						  <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles, Benito Juárez</span></li>
-						  <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:er.vikashs4@gmail.com">drstuarthgonzgmail.com</a></li>
-						  <li><i class="fa fa-phone" aria-hidden="true"></i>+52 5621204896</li>
-					  </ul>
-					</div>
-					<div class="col-md-4 w3agile_footer_grid w3agile_footer_grid1">
-						<h3>Navigation</h3>
-						<ul>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="gallery.html">Galeria</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="appointment.html">Citas</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="about.html">Nosotros</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="contact.html">Contacto</a></li>
-						</ul>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="w3_agileits_copy_right_social">
-				<div class="col-md-6 agileits_w3layouts_copy_right">
-					<p>&copy; 2024. All rights reserved.</p>
-				</div>
-				<div class="col-md-6 w3_agile_copy_right">
-					<ul class="agileits_social_list">
-								<li><a href="https://www.facebook.com/" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://twitter.com/" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				  </ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-	  </div>
-	</div>
+        // Configuración de Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyAhv8sig2xSMxE12IWirUp3ppNGMYjL6h0",
+  authDomain: "sistemareservaciones-30b6e.firebaseapp.com",
+  projectId: "sistemareservaciones-30b6e",
+  storageBucket: "sistemareservaciones-30b6e.appspot.com",
+  messagingSenderId: "392476332415",
+  appId: "1:392476332415:web:e19141f3698b81ef538a4a"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Función para iniciar sesión automáticamente al cargar la página
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                if (user.email === 'dr.stuarthgonz@gmail.com') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error de inicio de sesión:', error);
+            });
+    </script>
 </body>
 </html>
-
-
