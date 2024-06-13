@@ -1,5 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -14,38 +15,73 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-document.getElementById('appointment-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const patientName = document.getElementById('patient-name').value;
-    const doctorName = document.getElementById('doctor-name').value;
-    const appointmentTime = document.getElementById('appointment-time').value;
-
-    try {
-        const docRef = await addDoc(collection(db, 'appointments'), {
-            patientName,
-            doctorName,
-            appointmentTime
+document.addEventListener('DOMContentLoaded', function() {
+    const consultoriosList = document.getElementById('consultorios-list');
+    if (consultoriosList) {
+        consultoriosList.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const doctor = e.target.getAttribute('data-doctor');
+                const specialty = e.target.getAttribute('data-specialty');
+                alert(`Has elegido ${specialty} con ${doctor}`);
+            }
         });
-        console.log('Cita reservada con ID:', docRef.id);
-        loadAppointments();
-    } catch (e) {
-        console.error('Error agregando cita:', e);
+    }
+
+    const addDoctorForm = document.getElementById('add-doctor-form');
+    if (addDoctorForm) {
+        addDoctorForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const doctorName = document.getElementById('doctor-name').value;
+            const specialty = document.getElementById('specialty').value;
+
+            try {
+                await addDoc(collection(db, 'doctors'), {
+                    doctorName,
+                    specialty
+                });
+                loadDoctors();
+            } catch (e) {
+                console.error('Error agregando doctor:', e);
+            }
+        });
+    }
+
+    async function loadDoctors() {
+        const adminConsultoriosList = document.getElementById('admin-consultorios-list');
+        if (adminConsultoriosList) {
+            adminConsultoriosList.innerHTML = '';
+            const querySnapshot = await getDocs(collection(db, 'doctors'));
+            querySnapshot.forEach((doc) => {
+                const doctor = doc.data();
+                const listItem = document.createElement('div');
+                listItem.textContent = `${doctor.doctorName} - ${doctor.specialty}`;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.addEventListener('click', async () => {
+                    await deleteDoc(doc(db, 'doctors', doc.id));
+                    loadDoctors();
+                });
+                listItem.appendChild(deleteButton);
+                adminConsultoriosList.appendChild(listItem);
+            });
+        }
+    }
+
+    if (document.getElementById('admin-consultorios-list')) {
+        loadDoctors();
+    }
+
+    const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Error al cerrar sesión:', error);
+            });
+        });
     }
 });
 
-async function loadAppointments() {
-    const appointmentList = document.getElementById('appointment-list');
-    appointmentList.innerHTML = '';
-
-    const querySnapshot = await getDocs(collection(db, 'appointments'));
-    querySnapshot.forEach((doc) => {
-        const appointment = doc.data();
-        const listItem = document.createElement('div');
-        listItem.textContent = `${appointment.patientName} - ${appointment.doctorName} - ${appointment.appointmentTime}`;
-        appointmentList.appendChild(listItem);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', loadAppointments);
