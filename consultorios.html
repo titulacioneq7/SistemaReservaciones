@@ -1,210 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-<title>Reserva tu cita</title>
-<!-- Etiquetas de diseño-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" Department="" />
-<link href="css/services.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/ziehharmonika.css" rel="stylesheet" type="text/css">
-<link href="css/JiSlider.css" rel="stylesheet"> 
-<link href="css/styles.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-</head>
-	
-<body>
-<div class="main" id="home">
-<!-- banner -->
-		<div class="header_agileinfo">
-		<div class="w3_agileits_header_text">
-		<ul class="top_agile_w3l_info_icons">
-		<li><i class="fa fa-home" aria-hidden="true"></i>WTC Ciudad de México</li>
-		<li class="second"><i class="fa fa-phone" aria-hidden="true"></i>(+52) 5621204896</li>
-									
-		<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="drstuarthgonz@gmail.com">drstuarthgonz@gmail.com</a></li>
-		</ul>
-
-		</div>
-		<div class="agileinfo_social_icons">
-		<ul class="agileits_social_list">
-		<li><a href="https://www.facebook.com/" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-		<li><a href="https://twitter.com/" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-		<li><a href="https://www.linkedin.com/" class="w3_agile_linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-		</ul>
-		</div>
-		<div class="clearfix"> </div>
-			</div>				
-
-		<div class="header-bottom">
-		<nav class="navbar navbar-default">
-
-
-		<!-- Iconos y Logos -->
-		<div class="navbar-header">
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				  </button>
-					<div class="logo">
-						<h3><a class="navbar-brand" href="dashboard.html"> Dr. Stuarth <p>Gonzalez</p>
-						</a></h3>
-					</div>
-				</div>
-
-				<!-- Links de  navegacion -->
-				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-					<nav class="menu menu--sebastian">
-					<ul id="m_nav_list" class="m_nav menu__list">
-						<li class="m_nav_item menu__item" id="m_nav_item_1"> <a href="dashboard.html" class="menu__link">Inicio</a></li>
-						<li class="m_nav_item menu__item menu__item--current" id="moble_nav_item_2"> <a href="consultorios.html" class="menu__link">Reserva tu cita</a> </li>		
-								</ul>
-						</li>
-					</ul>
-				</nav>
-
-				</div>
-			</nav>
-	 </div>
-</div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultorios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/checkAuth.js"></script>
 </head>
 <body>
-    <h1>Elige un Consultorio</h1>
-    <div id="consultorios-list">
-        <button data-doctor="Dr. Stuarth" data-specialty="Ginecología">Ginecología - Dr. Stuarth</button>
-        <button data-doctor="Dra. Vanessa Ortiz" data-specialty="Terapias Estéticas">Terapias Estéticas - Dra. Vanessa Ortiz</button>
-        <button data-doctor="Dra. Gloria Flores" data-specialty="Nutrición">Nutrición - Dra. Gloria Flores</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Consultorios Médicos</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button id="logoutBtn" class="btn btn-danger">Cerrar Sesión</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/ginecologia.jpg" class="card-img-top" alt="Ginecología">
+                    <div class="card-body">
+                        <h5 class="card-title">Ginecología</h5>
+                        <p class="card-text">Consulta con el Dr. Stuarth.</p>
+                        <a href="ginecologia.html" class="btn btn-primary">Agendar Cita</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/terapias_esteticas.jpg" class="card-img-top" alt="Terapias Estéticas">
+                    <div class="card-body">
+                        <h5 class="card-title">Terapias Estéticas</h5>
+                        <p class="card-text">Consulta con la Dra. Vanessa Ortiz.</p>
+                        <a href="terapias_esteticas.html" class="btn btn-primary">Agendar Cita</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/nutricion.jpg" class="card-img-top" alt="Nutrición">
+                    <div class="card-body">
+                        <h5 class="card-title">Nutrición</h5>
+                        <p class="card-text">Consulta con la Dra. Gloria Flores.</p>
+                        <a href="nutricion.html" class="btn btn-primary">Agendar Cita</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button id="logout">Cerrar Sesión</button>
-<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<h4>Nuestro <span>Newsletter</span></h4>
-			<form action="#" method="post">
-				<input type="email" name="Email" placeholder="Ingresa Tú Email..." required="">
-			  <input type="submit" value="Send">
-		  </form>
-			<div class="agile_footer_copy">
-				<div class="w3agile_footer_grids">
-					<div class="col-md-4 w3agile_footer_grid">
-						<h3>Nosotros</h3>
-						<p>Dr. Stuarth Kenneth Gonzalez<span>Ginecologo y Obstetra</span></p>
-				  </div>
-				  <div class="col-md-4 w3agile_footer_grid">
-					<h3>Contact Info</h3>
-					  <ul>
-						  <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles, Benito Juárez</span></li>
-						  <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:er.vikashs4@gmail.com">drstuarthgonzgmail.com</a></li>
-						  <li><i class="fa fa-phone" aria-hidden="true"></i>+52 5621204896</li>
-					  </ul>
-					</div>
-					<div class="col-md-4 w3agile_footer_grid w3agile_footer_grid1">
-						<h3>Navigation</h3>
-						<ul>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="gallery.html">Galeria</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="appointment.html">Citas</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="about.html">Nosotros</a></li>
-							<li><span class="fa fa-long-arrow-right" aria-hidden="true"></span><a href="contact.html">Contacto</a></li>
-						</ul>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="w3_agileits_copy_right_social">
-				<div class="col-md-6 agileits_w3layouts_copy_right">
-					<p>&copy; 2024. Titulacion II Equipo 7.</p>
-				</div>
-				<div class="col-md-6 w3_agile_copy_right">
-					<ul class="agileits_social_list">
-								<li><a href="https://www.facebook.com/" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://twitter.com/" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				  </ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-	  </div>
-	</div>
-<!-- //footer -->
-<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
- <!-- js -->
-<script src="js/jquery-2.2.3.min.js"></script>
-<script src="js/JiSlider.js"></script>
-		<script>
-			$(window).load(function () {
-				$('#JiSlider').JiSlider({color: '#fff', start: 3, reverse: true}).addClass('ff')
-			})
-		</script><script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
-<script src="js/ziehharmonika.js"></script>
-<script>
-$(document).ready(function() {
-		$('.ziehharmonika').ziehharmonika({
-			collapsible: true,
-			prefix: ''
-		});
-	});
-</script>
-<!-- stats -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.countup.js"></script>
-		<script>
-			$('.counter').countUp();
-		</script>
-<!-- //stats -->
-<script type="text/javascript">
-$(function(){
-  $("#bars li .bar").each(function(key, bar){
-    var percentage = $(this).data('percentage');
-
-    $(this).animate({
-      'height':percentage+'%'
-    }, 1000);
-  })
-})
-</script>
-
-
-<!-- start-smoth-scrolling -->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
-</script>
-<!-- start-smoth-scrolling -->
-			<script src="js/jarallax.js"></script>
-	<script src="js/SmoothScroll.min.js"></script>
-	<script type="text/javascript">
-		/* init Jarallax */
-		$('.jarallax').jarallax({
-			speed: 0.5,
-			imgWidth: 1366,
-			imgHeight: 768
-		})
-	</script>
-	
+    <div id="footer-container"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/loadFooter.js"></script>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            firebase.auth().signOut().then(() => {
+                window.location.href = 'login.html';
+            }).catch((error) => {
+                console.error('Error al cerrar sesión: ', error);
+            });
+        });
+    </script>
 </body>
 </html>
+
