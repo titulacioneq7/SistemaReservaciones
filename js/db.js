@@ -1,21 +1,17 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-
 // Configuración de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAhv8sig2xSMxE12IWirUp3ppNGMYjL6h0",
-  authDomain: "sistemareservaciones-30b6e.firebaseapp.com",
-  projectId: "sistemareservaciones-30b6e",
-  storageBucket: "sistemareservaciones-30b6e.appspot.com",
-  messagingSenderId: "392476332415",
-  appId: "1:392476332415:web:e19141f3698b81ef538a4a"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
 };
 
 // Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
 
 document.addEventListener('DOMContentLoaded', function() {
     const consultoriosList = document.getElementById('consultorios-list');
@@ -37,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const specialty = document.getElementById('specialty').value;
 
             try {
-                await addDoc(collection(db, 'doctors'), {
+                await db.collection('doctors').add({
                     doctorName,
                     specialty
                 });
@@ -52,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const adminConsultoriosList = document.getElementById('admin-consultorios-list');
         if (adminConsultoriosList) {
             adminConsultoriosList.innerHTML = '';
-            const querySnapshot = await getDocs(collection(db, 'doctors'));
+            const querySnapshot = await db.collection('doctors').get();
             querySnapshot.forEach((doc) => {
                 const doctor = doc.data();
                 const listItem = document.createElement('div');
@@ -60,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Eliminar';
                 deleteButton.addEventListener('click', async () => {
-                    await deleteDoc(doc(db, 'doctors', doc.id));
+                    await db.collection('doctors').doc(doc.id).delete();
                     loadDoctors();
                 });
                 listItem.appendChild(deleteButton);
@@ -76,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoutButton = document.getElementById('logout');
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
-            signOut(auth).then(() => {
+            auth.signOut().then(() => {
                 window.location.href = 'index.html';
             }).catch((error) => {
                 console.error('Error al cerrar sesión:', error);
@@ -84,4 +80,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
 
