@@ -1,7 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getFirestore, collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -49,9 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 alert('Cita agendada correctamente.');
                 form.reset();
-
-                // Enviar correo de confirmación
-                sendConfirmationEmail(name, email, date, time, document.title.split(' - ')[0]);
             } catch (e) {
                 console.error('Error al agregar la cita: ', e);
                 alert('Error al agendar la cita, por favor intenta nuevamente.');
@@ -98,22 +94,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
-
-    function sendConfirmationEmail(name, email, date, time, type) {
-        const templateParams = {
-            to_name: name,
-            to_email: email,
-            appointment_date: date,
-            appointment_time: time,
-            appointment_type: type
-        };
-
-        emailjs.send('SistemaReservacion', 'SRC', templateParams)
-            .then((response) => {
-                console.log('Correo enviado exitosamente!', response.status, response.text);
-            }, (error) => {
-                console.error('Error al enviar el correo:', error);
-            });
     }
 });
