@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -14,19 +14,34 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            // Redirigir al panel de control
-            window.location.href = 'dashboard.html';
+document.getElementById('google-login').addEventListener('click', function() {
+    signInWithPopup(auth, provider)
+        .then(result => {
+            const user = result.user;
+            if (user.email === 'dr.stuarthgonz@gmail.com') {
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                window.location.href = 'dashboard.html';
+            }
         })
         .catch(error => {
             console.error('Error de inicio de sesión:', error);
         });
 });
+
+function setupLogoutButton() {
+    const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error('Error al cerrar sesión:', error);
+            });
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', setupLogoutButton);
