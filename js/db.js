@@ -1,7 +1,3 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-
 // Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAhv8sig2xSMxE12IWirUp3ppNGMYjL6h0",
