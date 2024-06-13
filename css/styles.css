@@ -35,6 +35,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-#appointment-list, #admin-appointment-list {
+#appointment-list, #admin-appointment-list, #consultorios-list, #admin-consultorios-list {
     margin-top: 20px;
 }
