@@ -42,3 +42,5 @@ function setupLogoutButton() {
 }
 
 document.addEventListener('DOMContentLoaded', setupLogoutButton);
+
+
