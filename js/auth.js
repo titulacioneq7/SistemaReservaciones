@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, signInWithPopup, GoogleAuthProvider, } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -31,17 +31,5 @@ document.getElementById('google-login').addEventListener('click', function() {
         });
 });
 
-function setupLogoutButton() {
-    const logoutButton = document.getElementById('logout');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', () => {
-            signOut(auth).then(() => {
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                console.error('Error al cerrar sesión:', error);
-            });
-        });
-    }
-}
 
 document.addEventListener('DOMContentLoaded', setupLogoutButton);
