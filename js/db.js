@@ -1,3 +1,7 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getFirestore, collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -7,21 +11,6 @@ const firebaseConfig = {
   storageBucket: "sistemareservaciones-30b6e.appspot.com",
   messagingSenderId: "392476332415",
   appId: "1:392476332415:web:e19141f3698b81ef538a4a"
-
-
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getFirestore, collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
-
-// Configuración de Firebase
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
 };
 
 // Inicializar Firebase
