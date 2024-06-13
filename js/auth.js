@@ -1,6 +1,3 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-
 // Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAhv8sig2xSMxE12IWirUp3ppNGMYjL6h0",
@@ -12,12 +9,12 @@ const firebaseConfig = {
 };
 
 // Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
 
 document.getElementById('google-login').addEventListener('click', function() {
-    signInWithPopup(auth, provider)
+    auth.signInWithPopup(provider)
         .then(result => {
             const user = result.user;
             if (user.email === 'dr.stuarthgonz@gmail.com') {
@@ -35,7 +32,7 @@ function setupLogoutButton() {
     const logoutButton = document.getElementById('logout');
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
-            signOut(auth).then(() => {
+            auth.signOut().then(() => {
                 window.location.href = 'index.html';
             }).catch((error) => {
                 console.error('Error al cerrar sesión:', error);
@@ -45,5 +42,3 @@ function setupLogoutButton() {
 }
 
 document.addEventListener('DOMContentLoaded', setupLogoutButton);
-
-
