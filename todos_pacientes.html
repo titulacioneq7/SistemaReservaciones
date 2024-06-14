@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todos los Pacientes</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+<body>
+  <h1>Lista de Todos los Pacientes</h1>
+  <div id="patientTables">
+    <h2>Ginecología</h2>
+    <table id="ginecologiaTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    
+    <h2>Terapias Estéticas</h2>
+    <table id="esteticasTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    
+    <h2>Nutrición</h2>
+    <table id="nutricionTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Editar Cita</h2>
+      <form id="editForm">
+        <input type="hidden" id="editId">
+        <input type="hidden" id="editCollection">
+        <label for="editName">Nombre:</label>
+        <input type="text" id="editName" name="editName" required>
+        
+        <label for="editPhone">Teléfono:</label>
+        <input type="tel" id="editPhone" name="editPhone" required>
+        
+        <label for="editDate">Fecha:</label>
+        <input type="date" id="editDate" name="editDate" required>
+        
+        <label for="editTime">Hora:</label>
+        <input type="time" id="editTime" name="editTime" required>
+        
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="todos_pacientes.js"></script>
+</body>
+</html>
