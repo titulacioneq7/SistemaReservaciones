@@ -12,31 +12,41 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Reservation form submission
-const form = document.getElementById('appointmentForm');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
-
-    db.collection('appointments').add({
-      name: name,
-      phone: phone,
-      date: date,
-      time: time
-    })
-    .then(() => {
-      alert('Cita reservada con éxito!');
-      form.reset();
-    })
-    .catch((error) => {
-      console.error('Error al reservar cita: ', error);
-    });
+// Función para verificar disponibilidad de cita
+function isAppointmentAvailable(date, time) {
+  return db.collection("ginecologia").where("date", "==", date).where("time", "==", time).get().then((querySnapshot) => {
+    return querySnapshot.empty; // Devuelve true si no hay documentos, es decir, la cita está disponible
   });
 }
+
+// Enviar formulario de cita
+document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+
+  isAppointmentAvailable(date, time).then((available) => {
+    if (available) {
+      db.collection("ginecologia").add({
+        name: name,
+        phone: phone,
+        date: date,
+        time: time
+      }).then(() => {
+        alert("Cita reservada exitosamente!");
+        document.getElementById('appointmentForm').reset();
+      }).catch((error) => {
+        console.error("Error al reservar la cita: ", error);
+      });
+    } else {
+      alert("Lo siento, ya hay una cita agendada en esa fecha y hora.");
+    }
+  }).catch((error) => {
+    console.error("Error al verificar la disponibilidad: ", error);
+  });
+});
 
 // Admin page: displaying appointments on FullCalendar
 const calendarEl = document.getElementById('calendar');
