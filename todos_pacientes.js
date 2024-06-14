@@ -52,7 +52,7 @@ function fetchPatients(collectionName, tableElement) {
   });
 }
 
-fetchPatients('appointments_ginecologia', ginecologiaTable);
+fetchPatients('appointments', ginecologiaTable);
 fetchPatients('appointments_esteticas', esteticasTable);
 fetchPatients('appointments_nutricion', nutricionTable);
 
