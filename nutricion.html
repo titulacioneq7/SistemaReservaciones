@@ -4,14 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrar Citas - Nutrición</title>
+    <title>Nutrición - Agendar Cita</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script type="module" src="js/checkAuth.js"></script>
-    <script type="module" src="js/adminCalendar.js"></script>
+    <script type="module" src="js/db.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -58,19 +53,15 @@
     </div>
     <!-- End Header -->
 
-    <h1>Administrar Citas - Nutrición</h1>
-    <div id="calendar"></div>
-
-    <!-- Formulario de Reserva -->
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Reserva de Horarios</h1>
-        <form id="reservation-form" class="border p-4 rounded shadow-sm">
+        <h1 class="text-center mb-4">Nutrición - Agendar Cita</h1>
+        <form id="appointmentForm" class="border p-4 rounded shadow-sm">
             <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
+                <label for="email">Correo:</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
@@ -84,28 +75,24 @@
             <div class="form-group">
                 <label for="time">Hora:</label>
                 <select class="form-control" id="time" name="time" required>
-                    <option value="07:00">07:00 AM</option>
-                    <option value="08:00">08:00 AM</option>
-                    <option value="09:00">09:00 AM</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="11:00">11:00 AM</option>
-                    <option value="12:00">12:00 PM</option>
-                    <option value="13:00">01:00 PM</option>
-                    <option value="14:00">02:00 PM</option>
-                    <option value="15:00">03:00 PM</option>
-                    <option value="16:00">04:00 PM</option>
-                    <option value="17:00">05:00 PM</option>
-                    <option value="18:00">06:00 PM</option>
+                    <option value="07:00">07:00</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Reservar</button>
+            <button type="submit">Agendar Cita</button>
         </form>
-        <div id="schedule" class="mt-5">
-            <h2 class="text-center">Horarios Lunes a Domingo de 07am hasta las 06pm</h2>
-            <div id="schedule-list" class="border p-4 rounded shadow-sm"></div>
-        </div>
+        <div id="footer-container"></div>
     </div>
-    <!-- End Formulario de Reserva -->
 
     <!-- Footer -->
     <div class="footer">
@@ -124,8 +111,8 @@
                     <div class="col-md-4 w3agile_footer_grid">
                         <h3>Contact Info</h3>
                         <ul>
-                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles, Benito
-                                    Juárez</span></li>
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles,
+                                    Benito Juárez</span></li>
                             <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a
                                     href="mailto:drstuarthgonz@gmail.com">drstuarthgonz@gmail.com</a></li>
                             <li><i class="fa fa-phone" aria-hidden="true"></i>+52 5621204896</li>
@@ -155,4 +142,22 @@
                     <ul class="agileits_social_list">
                         <li><a href="https://www.facebook.com/" class="w3_agile_facebook"><i
                                     class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="https://twitter.com/" class="ag
+                        <li><a href="https://twitter.com/" class="agile_twitter"><i class="fa fa-twitter"
+                                    aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer -->
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/loadFooter.js"></script>
+    <!-- End Scripts -->
+</body>
+
+</html>
