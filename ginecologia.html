@@ -103,6 +103,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     
     <label for="time">Hora:</label>
     <select id="time" name="time" required>
+      <option value="07:00">07:00</option>
+      <option value="08:00">08:00</option>
       <option value="09:00">09:00</option>
       <option value="10:00">10:00</option>
       <option value="11:00">11:00</option>
@@ -115,6 +117,19 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     
     <button type="submit">Reservar</button>
   </form>
+
+<script>
+    // Set min date for the date input to tomorrow's date
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const day = ('0' + tomorrow.getDate()).slice(-2);
+    const month = ('0' + (tomorrow.getMonth() + 1)).slice(-2);
+    const year = tomorrow.getFullYear();
+    dateInput.setAttribute('min', `${year}-${month}-${day}`);
+  </script>
+	
   <script src="db.js"></script>
 
 
