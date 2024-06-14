@@ -12,20 +12,21 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-document.getElementById('appointmentForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+// Reservation form submission
+const form = document.getElementById('appointmentForm');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
 
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-
-  // Check if there is already an appointment at the same date and time
-  db.collection('ginecologia').where('date', '==', date).where('time', '==', time).get()
+  db.collection('appointments').where('date', '==', date).where('time', '==', time).get()
     .then(querySnapshot => {
       if (querySnapshot.empty) {
         // If no existing appointment, proceed to add new appointment
-        db.collection('ginecologia').add({
+        db.collection('appointments').add({
           name: name,
           phone: phone,
           date: date,
@@ -43,6 +44,7 @@ document.getElementById('appointmentForm').addEventListener('submit', function (
       console.error('Error al verificar la cita: ', error);
     });
 });
+}
 
 // Admin page: displaying appointments on FullCalendar
 const calendarEl = document.getElementById('calendar');
