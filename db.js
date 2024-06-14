@@ -12,40 +12,36 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Función para verificar disponibilidad de cita
-function isAppointmentAvailable(date, time) {
-  return db.collection("ginecologia").where("date", "==", date).where("time", "==", time).get().then((querySnapshot) => {
-    return querySnapshot.empty; // Devuelve true si no hay documentos, es decir, la cita está disponible
-  });
-}
-
-// Enviar formulario de cita
-document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+document.getElementById('appointmentForm').addEventListener('submit', function (e) {
   e.preventDefault();
+
   const name = document.getElementById('name').value;
   const phone = document.getElementById('phone').value;
   const date = document.getElementById('date').value;
   const time = document.getElementById('time').value;
 
-  isAppointmentAvailable(date, time).then((available) => {
-    if (available) {
-      db.collection("ginecologia").add({
-        name: name,
-        phone: phone,
-        date: date,
-        time: time
-      }).then(() => {
-        alert("Cita reservada exitosamente!");
-        document.getElementById('appointmentForm').reset();
-      }).catch((error) => {
-        console.error("Error al reservar la cita: ", error);
-      });
-    } else {
-      alert("Lo siento, ya hay una cita agendada en esa fecha y hora.");
-    }
-  }).catch((error) => {
-    console.error("Error al verificar la disponibilidad: ", error);
-  });
+  // Check if there is already an appointment at the same date and time
+  db.collection('ginecologia').where('date', '==', date).where('time', '==', time).get()
+    .then(querySnapshot => {
+      if (querySnapshot.empty) {
+        // If no existing appointment, proceed to add new appointment
+        db.collection('ginecologia').add({
+          name: name,
+          phone: phone,
+          date: date,
+          time: time
+        }).then(() => {
+          alert('Cita reservada exitosamente');
+          document.getElementById('appointmentForm').reset();
+        }).catch(error => {
+          console.error('Error al reservar la cita: ', error);
+        });
+      } else {
+        alert('Ya existe una cita en esta fecha y hora.');
+      }
+    }).catch(error => {
+      console.error('Error al verificar la cita: ', error);
+    });
 });
 
 // Admin page: displaying appointments on FullCalendar
