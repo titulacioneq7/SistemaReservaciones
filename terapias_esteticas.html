@@ -104,18 +104,33 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     
     <label for="time">Hora:</label>
     <select id="time" name="time" required>
-      <option value="09:00">09:00</option>
+      <option value="08:00">08:00</option>
       <option value="10:00">10:00</option>
-      <option value="11:00">11:00</option>
       <option value="12:00">12:00</option>
-      <option value="13:00">13:00</option>
       <option value="14:00">14:00</option>
-      <option value="15:00">15:00</option>
       <option value="16:00">16:00</option>
     </select>
     
     <button type="submit">Reservar</button>
   </form>
+
+<div 
+	<h4>Disponibilodad Lunes a Domingo de 08 a 16:00 duarcion: 2hrs</h4>
+        <h4>Una vez reservada la cita nuestra secretaria se pondra en contacto con usted</h4>
+	</div>
+	
+<script>
+    // Set min date for the date input to tomorrow's date
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const day = ('0' + tomorrow.getDate()).slice(-2);
+    const month = ('0' + (tomorrow.getMonth() + 1)).slice(-2);
+    const year = tomorrow.getFullYear();
+    dateInput.setAttribute('min', `${year}-${month}-${day}`);
+  </script>
+	
   <script src="db2.js"></script>
 
 <!-- footer -->
