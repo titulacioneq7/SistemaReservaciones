@@ -116,6 +116,24 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     
     <button type="submit">Reservar</button>
   </form>
+
+<div 
+	<h4>Disponibilodad Lunes a Domingo de 09 a 16:00 </h4>
+        <h4>Una vez reservada la cita nuestra secretaria se pondra en contacto con usted</h4>
+	</div>
+	
+<script>
+    // Set min date for the date input to tomorrow's date
+    const dateInput = document.getElementById('date');
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const day = ('0' + tomorrow.getDate()).slice(-2);
+    const month = ('0' + (tomorrow.getMonth() + 1)).slice(-2);
+    const year = tomorrow.getFullYear();
+    dateInput.setAttribute('min', `${year}-${month}-${day}`);
+  </script>
+	
   <script src="db3.js"></script>
 
 
