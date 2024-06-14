@@ -22,20 +22,28 @@ if (formEsteticas) {
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
 
-    db.collection('appointments_esteticas').add({
-      name: name,
-      phone: phone,
-      date: date,
-      time: time
-    })
-    .then(() => {
-      alert('Cita reservada con éxito!');
-      formEsteticas.reset();
-    })
-    .catch((error) => {
-      console.error('Error al reservar cita: ', error);
+db.collection('appointments_esteticas').where('date', '==', date).where('time', '==', time).get()
+    .then(querySnapshot => {
+      if (querySnapshot.empty) {
+        // If no existing appointment, proceed to add new appointment
+        db.collection('appointments_esteticas').add({
+          name: name,
+          phone: phone,
+          date: date,
+          time: time
+        }).then(() => {
+          alert('Cita reservada exitosamente');
+          document.getElementById('appointmentForm').reset();
+        }).catch(error => {
+          console.error('Error al reservar la cita: ', error);
+        });
+      } else {
+        alert('Ya existe una cita en esta fecha y hora.');
+      }
+    }).catch(error => {
+      console.error('Error al verificar la cita: ', error);
     });
-  });
+});
 }
 
 // Admin page: displaying appointments for Terapias Estéticas on FullCalendar
