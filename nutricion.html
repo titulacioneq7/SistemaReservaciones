@@ -127,7 +127,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     const dateInput = document.getElementById('date');
     const today = new Date();
     const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setDate(tomorrow.getDate() + 2);
     const day = ('0' + tomorrow.getDate()).slice(-2);
     const month = ('0' + (tomorrow.getMonth() + 1)).slice(-2);
     const year = tomorrow.getFullYear();
