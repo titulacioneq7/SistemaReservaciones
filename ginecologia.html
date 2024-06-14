@@ -53,33 +53,49 @@
     </div>
     <!-- End Header -->
 
-    <h1>Ginecología - Agendar Cita</h1>
-    <form id="appointmentForm">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" required>
-        <label for="email">Correo:</label>
-        <input type="email" id="email" required>
-        <label for="phone">Teléfono:</label>
-        <input type="tel" id="phone" required>
-        <label for="date">Fecha:</label>
-        <input type="date" id="date" required>
-        <label for="time">Hora:</label>
-        <select id="time" required>
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-        </select>
-        <button type="submit">Agendar Cita</button>
-    </form>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Reserva de Horarios</h1>
+        <form id="reservation-form" class="border p-4 rounded shadow-sm">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Fecha:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Hora:</label>
+                <select class="form-control" id="time" name="time" required>
+                    <option value="07:00">07:00 AM</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                    <option value="18:00">06:00 PM</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Reservar</button>
+        </form>
+        <div id="schedule" class="mt-5">
+            <h2 class="text-center">Horarios Lunes a Domingo de 07am hasta las 06pm</h2>
+            <div id="schedule-list" class="border p-4 rounded shadow-sm"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <div class="footer">
@@ -98,7 +114,8 @@
                     <div class="col-md-4 w3agile_footer_grid">
                         <h3>Contact Info</h3>
                         <ul>
-                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles, Benito Juárez</span></li>
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>WTC CDMX,<span>Col, Nápoles, Benito
+                                    Juárez</span></li>
                             <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a
                                     href="mailto:drstuarthgonz@gmail.com">drstuarthgonz@gmail.com</a></li>
                             <li><i class="fa fa-phone" aria-hidden="true"></i>+52 5621204896</li>
