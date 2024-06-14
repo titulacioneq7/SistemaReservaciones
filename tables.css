@@ -1,0 +1,23 @@
+/* Estilos generales para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Estilos para los encabezados de sección */
+h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+}
