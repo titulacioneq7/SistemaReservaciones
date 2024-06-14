@@ -1,57 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" data-consultorio="nutricion">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservar Cita - Nutrición</title>
+    <title>Reserva de Nutrición</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <script type="module" src="js/db.js"></script>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Reservar Cita - Nutrición</h1>
-        <form id="appointment-form" class="border p-4 rounded shadow-sm">
+        <h1 class="text-center mb-4">Reserva de Nutrición</h1>
+        <form id="reservation-form" class="border p-4 rounded shadow-sm">
             <div class="form-group">
-                <label for="patient-name">Nombre del Paciente:</label>
-                <input type="text" class="form-control" id="patient-name" required>
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="patient-phone">Teléfono del Paciente:</label>
-                <input type="tel" class="form-control" id="patient-phone" required>
+                <label for="phone">Teléfono:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
             </div>
             <div class="form-group">
-                <label for="appointment-time">Hora de la Cita:</label>
-                <select class="form-control" id="appointment-time" required>
-                    <option value="" disabled selected>Elige la hora</option>
+                <label for="date">Fecha:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Hora:</label>
+                <select class="form-control" id="time" name="time" required>
+                    <option value="07:00">07:00 AM</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="09:00">09:00 AM</option>
                     <option value="10:00">10:00 AM</option>
                     <option value="11:00">11:00 AM</option>
                     <option value="12:00">12:00 PM</option>
-                    <option value="13:00">1:00 PM</option>
-                    <option value="14:00">2:00 PM</option>
-                    <option value="15:00">3:00 PM</option>
-                    <option value="16:00">4:00 PM</option>
-                    <option value="17:00">5:00 PM</option>
-                    <option value="18:00">6:00 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                    <option value="18:00">06:00 PM</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Reservar Cita</button>
+            <button type="submit" class="btn btn-primary btn-block">Reservar</button>
         </form>
-        <form id="cancel-form" class="border p-4 rounded shadow-sm mt-4">
-            <div class="form-group">
-                <label for="appointment-id">ID de la Cita para Cancelar:</label>
-                <input type="text" class="form-control" id="appointment-id" required>
-            </div>
-            <button type="submit" class="btn btn-danger btn-block">Cancelar Cita</button>
-        </form>
-        <div id="appointments-list" class="mt-5">
-            <h2 class="text-center">Citas Reservadas</h2>
-            <div id="appointments-list-content" class="border p-4 rounded shadow-sm"></div>
-        </div>
         <button id="logout" class="btn btn-secondary btn-block mt-4">Cerrar Sesión</button>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="db.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
